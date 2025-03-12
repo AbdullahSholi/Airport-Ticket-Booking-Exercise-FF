@@ -31,6 +31,11 @@ public class Manager
             
     }
     
+    public void GetAllFlights(GetAllFlightsUseCase getAllFlightsUseCase)
+    {
+        getAllFlightsUseCase.GetAllFlights();
+    }
+    
     
     public void Run()
     {
@@ -43,13 +48,16 @@ public class Manager
 
         
         var flightRepository = new CsvFilterBookingsRepository(bookingFlightsFilePath, passnegersFlightsFilePath, flightsFilePath, passengersParser, flightBookingsParser, getAllFlightsParser);
-            
+        var getAllFlightsRepository = new CsvGetAllFlightsRepository(flightsFilePath, getAllFlightsParser);
+   
+        
         var filterBookingsUseCase = new FilterBookingsUseCase(flightRepository);
-        Menu(filterBookingsUseCase);
+        var getAllFlightsUseCase = new GetAllFlightsUseCase(getAllFlightsRepository);
+        Menu(filterBookingsUseCase, getAllFlightsUseCase);
     }
     
 
-    public void Menu(FilterBookingsUseCase filterBookingsUseCase)
+    public void Menu(FilterBookingsUseCase filterBookingsUseCase, GetAllFlightsUseCase getAllFlightsUseCase)
     {
         while (true)
         {
@@ -62,6 +70,7 @@ public class Manager
                     FilterBookings(filterBookingsUseCase);
                     break;
                 case "2":
+                    GetAllFlights(getAllFlightsUseCase);
                     break;
                 case "3":
                     return;
