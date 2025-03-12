@@ -9,13 +9,13 @@ namespace AirportTicketBookingExercise.Presentation
         {
 
             Manager.Manager manager = new Manager.Manager();
-            
-            Menu(manager);
+            Passenger.Passenger passenger = new Passenger.Passenger();
+            Menu(manager, passenger);
 
 
         }
         
-        public static void Menu(Manager.Manager manager)
+        public static void Menu(Manager.Manager manager, Passenger.Passenger passenger)
         {
             Console.WriteLine("Welcome to Product Management!");
             
@@ -27,7 +27,7 @@ namespace AirportTicketBookingExercise.Presentation
                 switch (choice)
                 {
                     case "1":
-                        
+                        passenger.Run();
                         break;
                     case "2":
                         manager.Run();
