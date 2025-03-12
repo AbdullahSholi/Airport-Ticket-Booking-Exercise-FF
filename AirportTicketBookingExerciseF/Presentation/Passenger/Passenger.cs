@@ -139,7 +139,20 @@ public class Passenger
     }
 
 
+    private void CancelABooking(ManageBookingsUseCase  manageBookingUseCase)
+    {
+        manageBookingUseCase.CancelABooking();
+    }
 
+    private void ModifyABooking(ManageBookingsUseCase manageBookingsUseCase)
+    {
+        manageBookingsUseCase.ModifyABooking();
+    }
+
+    private void ViewPersonalBookings(ManageBookingsUseCase manageBookingUseCase)
+    {
+        manageBookingUseCase.ViewPersonalBookings();
+    }
 
     
     public void Run()
@@ -150,15 +163,18 @@ public class Passenger
         var flightBookingsParser = new FlightBookingsParser();
         
         var searchForAvailableFlightsRepository = new CsvSearchForAvailableFlightsRepository(flightsFilePath, searchForAvailableFlightsParser);
+        var manageBookingRepository = new CsvManageBookingsRepository(bookingsFilePath, flightBookingsParser);
         var bookAFlightRepository = new CsvBookAFlightRepository(bookingsFilePath, flightBookingsParser);
         
         var searchForAvailableFlightsUseCase = new SearchForAvailableFlightsUseCase(searchForAvailableFlightsRepository);
         var bookAFlightUseCase = new BookAFlightUseCase(bookAFlightRepository);
+        var manageBookingsUseCase = new ManageBookingsUseCase(manageBookingRepository);
+
         
-        Menu(searchForAvailableFlightsUseCase, bookAFlightUseCase);
+        Menu(searchForAvailableFlightsUseCase, bookAFlightUseCase, manageBookingsUseCase);
     }
 
-    private void Menu(SearchForAvailableFlightsUseCase searchForAvailableFlightsUseCase, BookAFlightUseCase bookAFlightUseCase)
+    private void Menu(SearchForAvailableFlightsUseCase searchForAvailableFlightsUseCase, BookAFlightUseCase bookAFlightUseCase, ManageBookingsUseCase manageBookingsUseCase)
     {
         while (true)
         {
@@ -174,6 +190,7 @@ public class Passenger
                     SearchForAvailableFlights(searchForAvailableFlightsUseCase);
                     break;
                 case "3":
+                    SubMenu(manageBookingsUseCase);
                     break;
                 case "4":
                     return;
@@ -184,6 +201,31 @@ public class Passenger
         }
     }
     
-   
+    private void SubMenu(ManageBookingsUseCase manageBookingsUseCase)
+    {
+        while (true)
+        {
+            Console.WriteLine("\n1. Cancel a booking\n2. Modify a booking\n3. View personal bookings\n4. Exit");
+            var manageBookingsChoice = Console.ReadLine();
+
+            switch (manageBookingsChoice)
+            {
+                case "1":
+                    CancelABooking(manageBookingsUseCase);
+                    break;
+                case "2":
+                    ModifyABooking(manageBookingsUseCase);
+                    break;
+                case "3":
+                    ViewPersonalBookings(manageBookingsUseCase);
+                    break;
+                case "4":
+                    return;
+                default:
+                    Console.WriteLine("Invalid choice, please try again.");
+                    break;
+            }
+        }
+    }
 }
 
