@@ -1,11 +1,10 @@
-using AirportTicketBookingExercise.Domain.UseCasesDeclaration;
-using AirportTicketBookingExercise.Infrastructure.Repositories;
+using AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Manager;
 
-namespace AirportTicketBookingExercise.Data.UseCasesImplementation.Manager;
+namespace AirportTicketBookingExerciseF.Application.UseCasesImplementation.Manager;
 
 public class FilterBookingsUseCase : IFilterBookingsUseCase
 {
-    public readonly CsvFilterBookingsRepository _filterBookingsRepository;
+    private readonly CsvFilterBookingsRepository _filterBookingsRepository;
 
     public FilterBookingsUseCase(CsvFilterBookingsRepository filterBookingsRepository)
     {

@@ -1,4 +1,4 @@
-namespace AirportTicketBookingExercise.Domain.UseCasesDeclaration;
+namespace AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Manager;
 
 public interface IFilterBookingsUseCase
 {

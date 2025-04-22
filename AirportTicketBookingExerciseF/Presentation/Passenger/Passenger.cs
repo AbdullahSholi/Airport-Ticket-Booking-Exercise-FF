@@ -1,11 +1,10 @@
-using System.Globalization;
-using AirportTicketBookingExercise.Application.UseCasesImplementation.Passenger;
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Domain.Enums;
-using AirportTicketBookingExercise.Infrastructure.Repositories;
-using AirportTicketBookingExercise.Infrastructure.Utilities;
+using AirportTicketBookingExerciseF.Application.UseCasesImplementation.Passenger;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Domain.Enums;
+using AirportTicketBookingExerciseF.Infrastructure.Utilities.Manager;
+using AirportTicketBookingExerciseF.Infrastructure.Utilities.Passenger;
 
-namespace AirportTicketBookingExercise.Presentation.Passenger;
+namespace AirportTicketBookingExerciseF.Presentation.Passenger;
 
 public class Passenger
 {

@@ -1,4 +1,4 @@
-namespace AirportTicketBookingExercise.Infrastructure.Validation;
+namespace AirportTicketBookingExerciseF.Infrastructure.Validators.Manager;
 
 public class BookingFlightsMetadata
 {

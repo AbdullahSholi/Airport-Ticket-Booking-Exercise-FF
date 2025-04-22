@@ -1,4 +1,4 @@
-namespace AirportTicketBookingExercise.Infrastructure.Validation;
+namespace AirportTicketBookingExerciseF.Infrastructure.Validators.Manager;
 
 using System.Collections.Generic;
 

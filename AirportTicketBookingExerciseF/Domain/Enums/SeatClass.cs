@@ -1,4 +1,4 @@
-namespace AirportTicketBookingExercise.Domain.Enums;
+namespace AirportTicketBookingExerciseF.Domain.Enums;
 
 public enum SeatClass
 {

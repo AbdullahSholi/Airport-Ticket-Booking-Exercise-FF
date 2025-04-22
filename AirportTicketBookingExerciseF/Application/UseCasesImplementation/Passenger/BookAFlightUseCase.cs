@@ -1,12 +1,11 @@
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Domain.UseCasesDeclaration.Passenger;
-using AirportTicketBookingExercise.Infrastructure.Repositories;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Passenger;
 
-namespace AirportTicketBookingExercise.Application.UseCasesImplementation.Passenger;
+namespace AirportTicketBookingExerciseF.Application.UseCasesImplementation.Passenger;
 
 public class BookAFlightUseCase : IBookAFlightUseCase
 {
-    public readonly CsvBookAFlightRepository _bookAFlightRepository;
+    private readonly CsvBookAFlightRepository _bookAFlightRepository;
 
     public BookAFlightUseCase(CsvBookAFlightRepository bookAFlightRepository)
     {

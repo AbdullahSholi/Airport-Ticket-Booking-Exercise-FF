@@ -1,20 +1,15 @@
-using System.Globalization;
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Domain.Enums;
-using AirportTicketBookingExercise.Domain.UseCasesDeclaration;
-using AirportTicketBookingExercise.Infrastructure.Utilities;
-using CsvHelper;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Infrastructure.Utilities.Manager;
 
-namespace AirportTicketBookingExercise.Infrastructure.Repositories;
 
 public class CsvFilterBookingsRepository
 {
     private readonly string _csvFilePathBookings;
     private readonly string _csvFilePathPassengers;
     private readonly string _csvFilePathFlights;
-    private FlightBookingsParser _flightBookingsParser;
-    private GetAllPassengersParser _passengersParser;
-    private GetAllFlightsParser _flightsParser;
+    private readonly FlightBookingsParser _flightBookingsParser;
+    private readonly GetAllPassengersParser _passengersParser;
+    private readonly GetAllFlightsParser _flightsParser;
     
 
     public CsvFilterBookingsRepository(string csvFilePathBookings, string csvFilePathPassengers, string csvFilePathFlights, GetAllPassengersParser passengersParser,FlightBookingsParser flightBookingsParser, GetAllFlightsParser flightsParser)

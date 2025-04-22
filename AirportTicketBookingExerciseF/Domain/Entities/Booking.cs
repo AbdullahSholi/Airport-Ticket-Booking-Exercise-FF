@@ -1,6 +1,6 @@
-using AirportTicketBookingExercise.Domain.Enums;
+using AirportTicketBookingExerciseF.Domain.Enums;
 
-namespace AirportTicketBookingExercise.Domain.Entities;
+namespace AirportTicketBookingExerciseF.Domain.Entities;
 
 public class Booking
 {

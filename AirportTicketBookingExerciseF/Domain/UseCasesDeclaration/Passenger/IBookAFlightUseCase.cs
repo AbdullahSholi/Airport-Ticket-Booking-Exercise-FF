@@ -1,7 +1,8 @@
-using AirportTicketBookingExercise.Application.UseCasesImplementation.Passenger;
-using AirportTicketBookingExercise.Domain.Entities;
+using AirportTicketBookingExerciseF.Application.UseCasesImplementation.Passenger;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Domain.Entities;
 
-namespace AirportTicketBookingExercise.Domain.UseCasesDeclaration.Passenger;
+namespace AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Passenger;
 
 public interface IBookAFlightUseCase
 {

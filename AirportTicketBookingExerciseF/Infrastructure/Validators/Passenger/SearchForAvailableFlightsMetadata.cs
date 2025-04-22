@@ -1,4 +1,4 @@
-namespace AirportTicketBookingExercise.Infrastructure.Validation;
+namespace AirportTicketBookingExerciseF.Infrastructure.Validation;
 
 public class SearchForAvailableFlightsMetadata
 {

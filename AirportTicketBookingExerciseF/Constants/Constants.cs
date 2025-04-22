@@ -1,8 +1,8 @@
-namespace AirportTicketBookingExercise.Constants;
+namespace AirportTicketBookingExerciseF.Constants;
 
 public static class Constants
 {
     public const string BaseCsvPath =
-        @"C:\Users\abdul\RiderProjects\AirportTicketBookingExerciseF\AirportTicketBookingExerciseF";
+        @"C:\Users\abdul\RiderProjects\Airport-Ticket-Booking-Exercise-FF\AirportTicketBookingExerciseF";
 
 }

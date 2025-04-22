@@ -1,12 +1,12 @@
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Infrastructure.Utilities;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Infrastructure.Utilities;
+using AirportTicketBookingExerciseF.Infrastructure.Utilities.Manager;
 
-namespace AirportTicketBookingExercise.Infrastructure.Repositories;
 
 public class CsvGetAllFlightsRepository
 {
     private readonly string _csvFilePath;
-    private GetAllFlightsParser _getAllFlightsParser;
+    private readonly GetAllFlightsParser _getAllFlightsParser;
 
     public CsvGetAllFlightsRepository(string csvFilePath, GetAllFlightsParser getAllFlightsParser)
     {

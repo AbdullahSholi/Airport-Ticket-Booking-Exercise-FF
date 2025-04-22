@@ -1,7 +1,8 @@
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Infrastructure.Utilities;
 
-namespace AirportTicketBookingExercise.Infrastructure.Repositories;
+
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Infrastructure.Utilities.Passenger;
+
 
 public class CsvSearchForAvailableFlightsRepository
 {

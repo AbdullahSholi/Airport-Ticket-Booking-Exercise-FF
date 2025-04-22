@@ -1,4 +1,4 @@
-namespace AirportTicketBookingExercise.Domain.Entities;
+namespace AirportTicketBookingExerciseF.Domain.Entities;
 
 public class Passenger
 {

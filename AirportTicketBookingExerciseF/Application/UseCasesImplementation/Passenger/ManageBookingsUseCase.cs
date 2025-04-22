@@ -1,14 +1,13 @@
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Domain.Enums;
-using AirportTicketBookingExercise.Domain.UseCasesDeclaration.Passenger;
-using AirportTicketBookingExercise.Infrastructure.Repositories;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Domain.Enums;
+using AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Passenger;
 
-namespace AirportTicketBookingExercise.Application.UseCasesImplementation.Passenger;
+namespace AirportTicketBookingExerciseF.Application.UseCasesImplementation.Passenger;
 
 public class ManageBookingsUseCase :  IManageBookingsUseCase
 {
 
-    private CsvManageBookingsRepository  _manageBookingsRepository;
+    private readonly CsvManageBookingsRepository  _manageBookingsRepository;
     public ManageBookingsUseCase(CsvManageBookingsRepository manageBookingsRepository)
     {
         _manageBookingsRepository = manageBookingsRepository;

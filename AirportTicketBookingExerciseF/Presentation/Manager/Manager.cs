@@ -1,9 +1,8 @@
-using AirportTicketBookingExercise.Data.UseCasesImplementation.Manager;
-using AirportTicketBookingExercise.Infrastructure.Repositories;
-using AirportTicketBookingExercise.Infrastructure.Utilities;
-using Microsoft.VisualBasic;
+using AirportTicketBookingExerciseF.Constants;
+using AirportTicketBookingExerciseF.Application.UseCasesImplementation.Manager;
+using AirportTicketBookingExerciseF.Infrastructure.Utilities.Manager;
 
-namespace AirportTicketBookingExercise.Presentation.Manager;
+namespace AirportTicketBookingExerciseF.Presentation.Manager;
 
 public class Manager
 {   

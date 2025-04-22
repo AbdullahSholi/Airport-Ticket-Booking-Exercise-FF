@@ -1,12 +1,11 @@
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Domain.UseCasesDeclaration.Passenger;
-using AirportTicketBookingExercise.Infrastructure.Repositories;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Passenger;
 
-namespace AirportTicketBookingExercise.Application.UseCasesImplementation.Passenger;
+namespace AirportTicketBookingExerciseF.Application.UseCasesImplementation.Passenger;
 
 public class SearchForAvailableFlightsUseCase : ISearchForAvailableFlightsUseCase
 {
-    public readonly CsvSearchForAvailableFlightsRepository  _searchForAvailableFlightsRepository;
+    private readonly CsvSearchForAvailableFlightsRepository  _searchForAvailableFlightsRepository;
 
     public SearchForAvailableFlightsUseCase(CsvSearchForAvailableFlightsRepository searchForAvailableFlightsRepository)
     {

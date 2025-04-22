@@ -1,7 +1,5 @@
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Infrastructure.Validation;
-
-namespace AirportTicketBookingExercise.Infrastructure.Utilities;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Infrastructure.Validation;
 
 public class GetAllPassengersParser
 {

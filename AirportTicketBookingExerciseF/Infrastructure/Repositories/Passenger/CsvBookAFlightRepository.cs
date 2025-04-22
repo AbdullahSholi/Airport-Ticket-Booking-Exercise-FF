@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Infrastructure.Utilities;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Infrastructure.Utilities;
+using AirportTicketBookingExerciseF.Infrastructure.Utilities.Manager;
 
-namespace AirportTicketBookingExercise.Infrastructure.Repositories;
 
 public class CsvBookAFlightRepository
 {

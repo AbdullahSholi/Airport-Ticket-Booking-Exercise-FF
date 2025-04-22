@@ -1,11 +1,10 @@
-using AirportTicketBookingExercise.Domain.UseCasesDeclaration;
-using AirportTicketBookingExercise.Infrastructure.Repositories;
+using AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Manager;
 
-namespace AirportTicketBookingExercise.Data.UseCasesImplementation.Manager;
+namespace AirportTicketBookingExerciseF.Application.UseCasesImplementation.Manager;
 
 public class GetAllFlightsUseCase :  IGetAllFlightsUseCase
 {
-    public readonly CsvGetAllFlightsRepository _getAllFlightsRepository;
+    private readonly CsvGetAllFlightsRepository _getAllFlightsRepository;
 
     public GetAllFlightsUseCase(CsvGetAllFlightsRepository getAllFlightsRepository)
     {

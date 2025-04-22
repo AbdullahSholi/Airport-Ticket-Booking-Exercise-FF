@@ -1,9 +1,8 @@
 using System.Globalization;
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Domain.Enums;
-using AirportTicketBookingExercise.Infrastructure.Validation;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Infrastructure.Validation;
 
-namespace AirportTicketBookingExercise.Infrastructure.Utilities;
+namespace AirportTicketBookingExerciseF.Infrastructure.Utilities.Passenger;
 
 public class SearchForAvailableFlightsParser
 {

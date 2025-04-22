@@ -1,9 +1,9 @@
 using System.Globalization;
-using AirportTicketBookingExercise.Domain.Entities;
-using AirportTicketBookingExercise.Domain.Enums;
-using AirportTicketBookingExercise.Infrastructure.Validation;
+using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Infrastructure.Validators.Manager;
 
-namespace AirportTicketBookingExercise.Infrastructure.Utilities;
+
+namespace AirportTicketBookingExerciseF.Infrastructure.Utilities.Manager;
 
 public class GetAllFlightsParser
 {
