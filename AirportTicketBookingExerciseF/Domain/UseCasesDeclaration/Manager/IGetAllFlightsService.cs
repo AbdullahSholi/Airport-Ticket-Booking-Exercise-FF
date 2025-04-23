@@ -1,6 +1,6 @@
 namespace AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Manager;
 
-public interface IGetAllFlightsUseCase
+public interface IGetAllFlightsService
 {
     public void GetAllFlights();
 }

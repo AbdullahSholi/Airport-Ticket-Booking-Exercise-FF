@@ -1,4 +1,3 @@
-
 namespace AirportTicketBookingExerciseF.Domain.Entities;
 
 public class Flight

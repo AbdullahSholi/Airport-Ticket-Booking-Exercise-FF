@@ -1,4 +1,5 @@
 using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Infrastructure.Utilities;
 using AirportTicketBookingExerciseF.Infrastructure.Validation;
 
 public class GetAllPassengersParser
@@ -9,6 +10,7 @@ public class GetAllPassengersParser
     {
         _validationRules = PassengersMetadata.GetValidationRules();
     }
+
     internal Passenger ParsePassenger(string line)
     {
         var parts = line.Split(',');
@@ -16,28 +18,28 @@ public class GetAllPassengersParser
         var errors = new List<string>();
 
         if (parts.Length < _validationRules.Count)
-        {   
-            errors.Add($"Invalid data format: missing required fields.");
+        {
+            errors.Add(Messages.MissingRequiredFields);
             PrintErrors(line, errors);
             return null;
         }
-        
-        if (!int.TryParse(parts[0], out int passengerId))
+
+        if (!int.TryParse(parts[0], out var passengerId))
             errors.Add($"Passenger ID Error: {_validationRules["Passenger ID"]}");
-        
-        
+
+
         if (string.IsNullOrWhiteSpace(parts[1]))
             errors.Add($"Passenger First Name Error: {_validationRules["First Name"]}");
 
         if (string.IsNullOrWhiteSpace(parts[2]))
             errors.Add($"Passenger Last Name Error: {_validationRules["Last Name"]}");
-        
+
         if (string.IsNullOrWhiteSpace(parts[3]))
             errors.Add($"Passenger Email Error: {_validationRules["Email"]}");
 
         if (string.IsNullOrWhiteSpace(parts[4]))
             errors.Add($"Passenger PhoneNumber Error: {_validationRules["Phone Number"]}");
-        
+
 
         if (errors.Any())
         {
@@ -54,6 +56,7 @@ public class GetAllPassengersParser
             PhoneNumber = parts[4]
         };
     }
+
     private void PrintErrors(string line, List<string> errors)
     {
         Console.WriteLine($"Validation Errors for line: {line}");

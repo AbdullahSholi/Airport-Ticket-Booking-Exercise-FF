@@ -1,6 +1,6 @@
 namespace AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Passenger;
 
-public interface IManageBookingsUseCase
+public interface IManageBookingsService
 {
     public void CancelABooking();
     public void ModifyABooking();

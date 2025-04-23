@@ -2,24 +2,22 @@ using AirportTicketBookingExerciseF.Domain.Entities;
 using AirportTicketBookingExerciseF.Infrastructure.Utilities;
 using AirportTicketBookingExerciseF.Infrastructure.Utilities.Manager;
 
-
 public class CsvManageBookingsRepository
 {
-    
-    public readonly string? _csvFilePath;
-    public FlightBookingsParser _flightBookingsParser;
+    private readonly string? _csvFilePath;
+    private readonly FlightBookingsParser _flightBookingsParser;
 
-    public CsvManageBookingsRepository(string? csvFilePath,  FlightBookingsParser flightBookingsParser)
+    public CsvManageBookingsRepository(string? csvFilePath, FlightBookingsParser flightBookingsParser)
     {
         _csvFilePath = csvFilePath;
         _flightBookingsParser = flightBookingsParser;
     }
-    
+
     public void SaveBookings(List<Booking> bookings)
     {
         var lines = new List<string>
         {
-            "Id,FlightId,PassengerId,PassengerName,SeatClass,Price,BookingDate"
+            Messages.CsvBookingHeader
         };
 
         lines.AddRange(bookings.Select(b =>
@@ -27,11 +25,12 @@ public class CsvManageBookingsRepository
 
         File.WriteAllLines(_csvFilePath, lines);
     }
+
     public List<Booking> GetAllBookings()
     {
         if (!File.Exists(_csvFilePath)) return new List<Booking>();
-        
-        var lines = File.ReadAllLines(_csvFilePath).Skip(1); // Skip header row
+
+        var lines = File.ReadAllLines(_csvFilePath).Skip(1);
         return lines.Select(line => _flightBookingsParser.ParseBooking(line)).ToList();
     }
 }

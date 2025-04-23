@@ -1,84 +1,72 @@
-using AirportTicketBookingExerciseF.Constants;
 using AirportTicketBookingExerciseF.Application.UseCasesImplementation.Manager;
+using AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Manager;
 using AirportTicketBookingExerciseF.Infrastructure.Utilities.Manager;
+using AirportTicketBookingExerciseF.Presentation.Utilities;
 
 namespace AirportTicketBookingExerciseF.Presentation.Manager;
 
 public class Manager
-{   
-    
-    public void FilterBookings(FilterBookingsUseCase filterBookingsUseCase)
-    {
-        Console.Write("""
-                      Enter filter parameter
-                        * Departure Country ( DepartureCountry )
-                        * Destination Country ( DestinationCountry )
-                        * Flight ( Flight )
-                        * Price ( Price )
-                        * Departure Date ( DepartureDate )
-                        * Departure Airport ( DepartureAirport )
-                        * Arrival Airport ( ArrivalAirport )
-                        * Class ( SeatClass )
-                        * Passenger ( Passenger )
-                      """);
-        Console.WriteLine();
-        string parameter = Console.ReadLine();
-        Console.Write("Enter value: ");
-        string value = Console.ReadLine();
-
-        filterBookingsUseCase.FilterBookings(parameter, value);
-            
-    }
-    
-    public void GetAllFlights(GetAllFlightsUseCase getAllFlightsUseCase)
-    {
-        getAllFlightsUseCase.GetAllFlights();
-    }
-    
-    
+{
     public void Run()
     {
-        string passnegersFlightsFilePath = Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Passengers.csv");
-        string bookingFlightsFilePath = Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Bookings.csv");
-        string flightsFilePath = Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Flights.csv");
+        var passnegersFlightsFilePath =
+            Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Passengers.csv");
+        var bookingFlightsFilePath =
+            Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Bookings.csv");
+        var flightsFilePath =
+            Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Flights.csv");
         var flightBookingsParser = new FlightBookingsParser();
         var getAllFlightsParser = new GetAllFlightsParser();
         var passengersParser = new GetAllPassengersParser();
 
-        
-        var flightRepository = new CsvFilterBookingsRepository(bookingFlightsFilePath, passnegersFlightsFilePath, flightsFilePath, passengersParser, flightBookingsParser, getAllFlightsParser);
-        var getAllFlightsRepository = new CsvGetAllFlightsRepository(flightsFilePath, getAllFlightsParser);
-   
-        
-        var filterBookingsUseCase = new FilterBookingsUseCase(flightRepository);
-        var getAllFlightsUseCase = new GetAllFlightsUseCase(getAllFlightsRepository);
-        Menu(filterBookingsUseCase, getAllFlightsUseCase);
-    }
-    
 
-    public void Menu(FilterBookingsUseCase filterBookingsUseCase, GetAllFlightsUseCase getAllFlightsUseCase)
+        var flightRepository = new CsvFilterBookingsRepository(bookingFlightsFilePath, passnegersFlightsFilePath,
+            flightsFilePath, passengersParser, flightBookingsParser, getAllFlightsParser);
+        var getAllFlightsRepository = new CsvGetAllFlightsRepository(flightsFilePath, getAllFlightsParser);
+
+
+        var filterBookingsService = new FilterBookingsService(flightRepository);
+        var getAllFlightsService = new GetAllFlightsService(getAllFlightsRepository);
+        Menu(filterBookingsService, getAllFlightsService);
+    }
+
+    private void FilterBookings(IFilterBookingsService filterBookingsService)
+    {
+        Console.Write(Messages.FilterBookingParameters);
+        Console.WriteLine();
+        var parameter = Console.ReadLine();
+        Console.Write(Messages.EnterValue);
+        var value = Console.ReadLine();
+
+        filterBookingsService.FilterBookings(parameter, value);
+    }
+
+    private void GetAllFlights(IGetAllFlightsService getAllFlightsService)
+    {
+        getAllFlightsService.GetAllFlights();
+    }
+
+    private void Menu(IFilterBookingsService filterBookingsService, IGetAllFlightsService getAllFlightsService)
     {
         while (true)
         {
-            Console.WriteLine("\n1. Filter Bookings\n2. Get all flights from CSV\n3. Exit");
+            Console.WriteLine(Messages.ManagerMenu);
             var managerOperationsChoice = Console.ReadLine();
 
             switch (managerOperationsChoice)
             {
                 case "1":
-                    FilterBookings(filterBookingsUseCase);
+                    FilterBookings(filterBookingsService);
                     break;
                 case "2":
-                    GetAllFlights(getAllFlightsUseCase);
+                    GetAllFlights(getAllFlightsService);
                     break;
                 case "3":
                     return;
                 default:
-                    Console.WriteLine("Invalid choice, please try again.");
+                    Console.WriteLine(Messages.InvalidChoice);
                     break;
             }
         }
-        
-        
     }
 }

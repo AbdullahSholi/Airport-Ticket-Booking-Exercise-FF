@@ -12,8 +12,7 @@ public class BookingFlightsMetadata
             { "Passenger Name", "Type: Free Text, Constraint: Required" },
             { "Seat Class", "Type: Enum, Constraint: Required (Economy, Business, First Class)" },
             { "Price", "Type: Decimal, Constraint: Required" },
-            { "Booking Date", "Type: Date Time, Constraint: Required, Allowed Range (today \u2192 future)" },
-            
+            { "Booking Date", "Type: Date Time, Constraint: Required, Allowed Range (today \u2192 future)" }
         };
     }
 }

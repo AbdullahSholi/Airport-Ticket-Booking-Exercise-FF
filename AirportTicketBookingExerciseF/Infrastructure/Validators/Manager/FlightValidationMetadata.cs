@@ -1,8 +1,5 @@
 namespace AirportTicketBookingExerciseF.Infrastructure.Validators.Manager;
 
-using System.Collections.Generic;
-
-
 public static class FlightValidationMetadata
 {
     public static Dictionary<string, string> GetValidationRules()

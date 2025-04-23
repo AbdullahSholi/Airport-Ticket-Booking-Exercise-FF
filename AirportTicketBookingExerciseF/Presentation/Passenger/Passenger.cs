@@ -1,63 +1,147 @@
 using AirportTicketBookingExerciseF.Application.UseCasesImplementation.Passenger;
 using AirportTicketBookingExerciseF.Domain.Entities;
 using AirportTicketBookingExerciseF.Domain.Enums;
+using AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Passenger;
 using AirportTicketBookingExerciseF.Infrastructure.Utilities.Manager;
 using AirportTicketBookingExerciseF.Infrastructure.Utilities.Passenger;
+using AirportTicketBookingExerciseF.Presentation.Utilities;
 
 namespace AirportTicketBookingExerciseF.Presentation.Passenger;
 
 public class Passenger
 {
+    public void Run()
+    {
+        var flightsFilePath =
+            Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Flights.csv");
+        var bookingsFilePath =
+            Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Bookings.csv");
+        var searchForAvailableFlightsParser = new SearchForAvailableFlightsParser();
+        var flightBookingsParser = new FlightBookingsParser();
+
+        var searchForAvailableFlightsRepository =
+            new CsvSearchForAvailableFlightsRepository(flightsFilePath, searchForAvailableFlightsParser);
+        var manageBookingRepository = new CsvManageBookingsRepository(bookingsFilePath, flightBookingsParser);
+        var bookAFlightRepository = new CsvBookAFlightRepository(bookingsFilePath, flightBookingsParser);
+
+        var searchForAvailableFlightsService =
+            new SearchForAvailableFlightsService(searchForAvailableFlightsRepository);
+        var bookAFlightService = new BookAFlightService(bookAFlightRepository);
+        var manageBookingsService = new ManageBookingsService(manageBookingRepository);
+
+
+        Menu(searchForAvailableFlightsService, bookAFlightService, manageBookingsService);
+    }
+
+    private void Menu(ISearchForAvailableFlightsService searchForAvailableFlightsService,
+        IBookAFlightService bookAFlightService, IManageBookingsService manageBookingsService)
+    {
+        while (true)
+        {
+            Console.WriteLine(Messages.PassengerMenu);
+            var passengerOperationsChoice = Console.ReadLine();
+
+            switch (passengerOperationsChoice)
+            {
+                case "1":
+                    BookAFlight(searchForAvailableFlightsService, bookAFlightService);
+                    break;
+                case "2":
+                    SearchForAvailableFlights(searchForAvailableFlightsService);
+                    break;
+                case "3":
+                    SubMenu(manageBookingsService);
+                    break;
+                case "4":
+                    return;
+                default:
+                    Console.WriteLine(Messages.InvalidChoice);
+                    break;
+            }
+        }
+    }
+
+    private void SubMenu(IManageBookingsService manageBookingsService)
+    {
+        while (true)
+        {
+            Console.WriteLine(Messages.PassengerManageBookingsMenu);
+            var manageBookingsChoice = Console.ReadLine();
+
+            switch (manageBookingsChoice)
+            {
+                case "1":
+                    CancelABooking(manageBookingsService);
+                    break;
+                case "2":
+                    ModifyABooking(manageBookingsService);
+                    break;
+                case "3":
+                    ViewPersonalBookings(manageBookingsService);
+                    break;
+                case "4":
+                    return;
+                default:
+                    Console.WriteLine(Messages.InvalidChoice);
+                    break;
+            }
+        }
+    }
 
     private Flight? SelectFlightToBook(List<Flight> flights, int flightId)
     {
         var flight = flights.SingleOrDefault(f => f.FlightId == flightId);
         return flight;
     }
+
     private decimal? GetMaximumLineBookingIds()
     {
-        string bookingFlightsFilePath = Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Bookings.csv");
-        int columnIndex = 0; 
+        var bookingFlightsFilePath =
+            Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Bookings.csv");
+        var columnIndex = 0;
 
         try
         {
             var lines = File.ReadAllLines(bookingFlightsFilePath);
 
             var maxNumber = lines
-                .Skip(1) 
-                .Select(line => line.Split(',')[columnIndex]) 
-                .Select(value => decimal.TryParse(value, out var num) ? num : (decimal?)null) 
+                .Skip(1)
+                .Select(line => line.Split(',')[columnIndex])
+                .Select(value => decimal.TryParse(value, out var num) ? num : (decimal?)null)
                 .Where(num => num.HasValue)
-                .Max(); 
+                .Max();
 
             Console.WriteLine($"The maximum value in column {columnIndex} is: {maxNumber}");
             return maxNumber;
-
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error: {ex.Message}");
         }
+
         return null;
     }
-    
-    
-    private void BookAFlight(SearchForAvailableFlightsUseCase searchForAvailableFlightsUseCase, BookAFlightUseCase bookAFlightUseCase)
+
+    private void BookAFlight(ISearchForAvailableFlightsService searchForAvailableFlightsService,
+        IBookAFlightService bookAFlightService)
     {
-        var searchResult = SearchForAvailableFlights(searchForAvailableFlightsUseCase);
-        if (!searchResult.Any()) Console.WriteLine("No matching flights found.");
+        var searchResult = SearchForAvailableFlights(searchForAvailableFlightsService);
+        if (!searchResult.Any())
+        {
+            Console.WriteLine(Messages.NoMatchingFlight);
+        }
         else
         {
-            searchResult.ForEach(f => Console.WriteLine($"FlightID: {f.FlightId}, DepartureCountry: {f.DestinationCountry}, DestinationCountry: {f.DestinationCountry}, DepartureDate: {f.DepartureDate}, DepartureAirport: {f.DepartureAirport}, ArrivalAirport: {f.ArrivalAirport}, Price: {f.Price}"));
-            
-            Console.Write("Enter Flight ID to book flight: ");
-            
-            if (int.TryParse(Console.ReadLine(), out int flightId))
+            searchResult.ForEach(f =>
+                Console.WriteLine(
+                    $"FlightID: {f.FlightId}, DepartureCountry: {f.DestinationCountry}, DestinationCountry: {f.DestinationCountry}, DepartureDate: {f.DepartureDate}, DepartureAirport: {f.DepartureAirport}, ArrivalAirport: {f.ArrivalAirport}, Price: {f.Price}"));
+
+            Console.Write(Messages.EnterFlightBooking);
+
+            if (int.TryParse(Console.ReadLine(), out var flightId))
             {
                 if (!searchResult.Any(f => f.FlightId == flightId))
-                {
-                    Console.WriteLine("Invalid choice. Flight ID not found.");
-                }
+                    Console.WriteLine(Messages.FlightIdNotFound);
 
                 var flight = SelectFlightToBook(searchResult, flightId);
                 Console.WriteLine("""
@@ -66,165 +150,74 @@ public class Passenger
                                     2- EconomyClass
                                     3- BusinessClass
                                   """);
-                string? @class = "";
+                var @class = "";
                 int? choice = int.Parse(Console.ReadLine());
                 if (choice == 1)
-                {
-                    @class = "FirstClass"; 
-                } else if (choice == 2)
-                {
-                    @class = "Economy";
-                } else if (choice == 3)
-                {
-                    @class = "Business";
-                }
+                    @class = Messages.FirstClass;
+                else if (choice == 2)
+                    @class = Messages.EconomyClass;
+                else if (choice == 3)
+                    @class = Messages.BusinessClass;
                 else
-                {
-                    @class = "Invalid Option";
-                }
-        
-                string? passengerName = Console.ReadLine();
+                    @class = Messages.InvalidOption;
 
-                var booking = new Booking()
+                var passengerName = Console.ReadLine();
+
+                var booking = new Booking
                 {
                     BookingId = (int)GetMaximumLineBookingIds() + 1,
                     FlightId = flightId,
-                    PassengerId = 1, 
+                    PassengerId = 1,
                     PassengerName = passengerName,
                     SeatClass = (SeatClass)Enum.Parse(typeof(SeatClass), @class),
                     Price = flight.Price,
                     BookingDate = DateTime.Now
                 };
-        
-                string bookingFlightsFilePath = Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Bookings.csv");
-                
-                bookAFlightUseCase.BookAFlight(bookingFlightsFilePath, booking);
-                Console.WriteLine("Booking added successfully!");
+
+                var bookingFlightsFilePath = Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData",
+                    "Bookings.csv");
+
+                bookAFlightService.BookAFlight(bookingFlightsFilePath, booking);
+                Console.WriteLine(Messages.BookingSuccessfully);
             }
             else
             {
-                Console.WriteLine("Invalid input. Please enter a valid numeric Flight ID.");
+                Console.WriteLine(Messages.InvalidFlightId);
             }
-            
-            
         }
-
-        
-        
     }
-    
-    private List<Flight> SearchForAvailableFlights(SearchForAvailableFlightsUseCase searchForAvailableFlightsUseCase)
+
+    private List<Flight> SearchForAvailableFlights(ISearchForAvailableFlightsService searchForAvailableFlightsService)
     {
-        Console.Write("""
-                      Search by
-                        * Departure Country ( DepartureCountry )
-                        * Destination Country ( DestinationCountry )
-                        * Price (Price)
-                        * Departure Date ( DepartureDate )
-                        * Departure Airport ( DepartureAirport )
-                        * Arrival Airport ( ArrivalAirport )
-                      """);
+        Console.Write(Messages.FilterAvailableFlightParameters);
         Console.WriteLine();
-        string parameter = Console.ReadLine();
-        Console.Write("Enter value: ");
-        string value = Console.ReadLine();
-        
-        var searchResult = searchForAvailableFlightsUseCase.SearchForAvailableFlights(parameter, value);
-        
-        if (!searchResult.Any()) Console.WriteLine("No matching flights found.");
-        else searchResult.ForEach(f => Console.WriteLine($"FlightID: {f.FlightId}, DepartureCountry: {f.DestinationCountry}, DestinationCountry: {f.DestinationCountry}, DepartureDate: {f.DepartureDate}, DepartureAirport: {f.DepartureAirport}, ArrivalAirport: {f.ArrivalAirport}, Price: {f.Price}"));
-            
+        var parameter = Console.ReadLine();
+        Console.Write(Messages.EnterValue);
+        var value = Console.ReadLine();
+
+        var searchResult = searchForAvailableFlightsService.SearchForAvailableFlights(parameter, value);
+
+        if (!searchResult.Any()) Console.WriteLine(Messages.NoMatchingFlight);
+        else
+            searchResult.ForEach(f =>
+                Console.WriteLine(
+                    $"FlightID: {f.FlightId}, DepartureCountry: {f.DestinationCountry}, DestinationCountry: {f.DestinationCountry}, DepartureDate: {f.DepartureDate}, DepartureAirport: {f.DepartureAirport}, ArrivalAirport: {f.ArrivalAirport}, Price: {f.Price}"));
+
         return searchResult;
     }
 
-
-    private void CancelABooking(ManageBookingsUseCase  manageBookingUseCase)
+    private void CancelABooking(IManageBookingsService manageBookingService)
     {
-        manageBookingUseCase.CancelABooking();
+        manageBookingService.CancelABooking();
     }
 
-    private void ModifyABooking(ManageBookingsUseCase manageBookingsUseCase)
+    private void ModifyABooking(IManageBookingsService manageBookingsService)
     {
-        manageBookingsUseCase.ModifyABooking();
+        manageBookingsService.ModifyABooking();
     }
 
-    private void ViewPersonalBookings(ManageBookingsUseCase manageBookingUseCase)
+    private void ViewPersonalBookings(IManageBookingsService manageBookingService)
     {
-        manageBookingUseCase.ViewPersonalBookings();
-    }
-
-    
-    public void Run()
-    {   
-        string flightsFilePath = Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Flights.csv");
-        string bookingsFilePath = Path.Combine(Constants.Constants.BaseCsvPath, "Infrastructure", "FileData", "Bookings.csv");
-        var searchForAvailableFlightsParser = new SearchForAvailableFlightsParser();
-        var flightBookingsParser = new FlightBookingsParser();
-        
-        var searchForAvailableFlightsRepository = new CsvSearchForAvailableFlightsRepository(flightsFilePath, searchForAvailableFlightsParser);
-        var manageBookingRepository = new CsvManageBookingsRepository(bookingsFilePath, flightBookingsParser);
-        var bookAFlightRepository = new CsvBookAFlightRepository(bookingsFilePath, flightBookingsParser);
-        
-        var searchForAvailableFlightsUseCase = new SearchForAvailableFlightsUseCase(searchForAvailableFlightsRepository);
-        var bookAFlightUseCase = new BookAFlightUseCase(bookAFlightRepository);
-        var manageBookingsUseCase = new ManageBookingsUseCase(manageBookingRepository);
-
-        
-        Menu(searchForAvailableFlightsUseCase, bookAFlightUseCase, manageBookingsUseCase);
-    }
-
-    private void Menu(SearchForAvailableFlightsUseCase searchForAvailableFlightsUseCase, BookAFlightUseCase bookAFlightUseCase, ManageBookingsUseCase manageBookingsUseCase)
-    {
-        while (true)
-        {
-            Console.WriteLine("\n1. Book a flight\n2. Search for available flights\n3. Manage Bookings\n4. Exit");
-            var passengerOperationsChoice = Console.ReadLine();
-
-            switch (passengerOperationsChoice)
-            {
-                case "1":
-                    BookAFlight(searchForAvailableFlightsUseCase,bookAFlightUseCase);
-                    break;
-                case "2":
-                    SearchForAvailableFlights(searchForAvailableFlightsUseCase);
-                    break;
-                case "3":
-                    SubMenu(manageBookingsUseCase);
-                    break;
-                case "4":
-                    return;
-                default:
-                    Console.WriteLine("Invalid choice, please try again.");
-                    break;
-            }
-        }
-    }
-    
-    private void SubMenu(ManageBookingsUseCase manageBookingsUseCase)
-    {
-        while (true)
-        {
-            Console.WriteLine("\n1. Cancel a booking\n2. Modify a booking\n3. View personal bookings\n4. Exit");
-            var manageBookingsChoice = Console.ReadLine();
-
-            switch (manageBookingsChoice)
-            {
-                case "1":
-                    CancelABooking(manageBookingsUseCase);
-                    break;
-                case "2":
-                    ModifyABooking(manageBookingsUseCase);
-                    break;
-                case "3":
-                    ViewPersonalBookings(manageBookingsUseCase);
-                    break;
-                case "4":
-                    return;
-                default:
-                    Console.WriteLine("Invalid choice, please try again.");
-                    break;
-            }
-        }
+        manageBookingService.ViewPersonalBookings();
     }
 }
-
