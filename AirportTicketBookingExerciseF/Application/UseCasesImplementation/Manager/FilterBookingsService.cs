@@ -1,13 +1,14 @@
 using AirportTicketBookingExerciseF.Application.Utilities;
 using AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Manager;
+using AirportTicketBookingExerciseF.Infrastructure.Repositories.Manager;
 
 namespace AirportTicketBookingExerciseF.Application.UseCasesImplementation.Manager;
 
 public class FilterBookingsService : IFilterBookingsService
 {
-    private readonly CsvFilterBookingsRepository _filterBookingsRepository;
+    private readonly ICsvFilterBookingsRepository _filterBookingsRepository;
 
-    public FilterBookingsService(CsvFilterBookingsRepository filterBookingsRepository)
+    public FilterBookingsService(ICsvFilterBookingsRepository filterBookingsRepository)
     {
         _filterBookingsRepository = filterBookingsRepository;
     }

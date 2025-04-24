@@ -2,14 +2,15 @@ using AirportTicketBookingExerciseF.Application.Utilities;
 using AirportTicketBookingExerciseF.Domain.Entities;
 using AirportTicketBookingExerciseF.Domain.Enums;
 using AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Passenger;
+using AirportTicketBookingExerciseF.Infrastructure.Repositories.Passenger;
 
 namespace AirportTicketBookingExerciseF.Application.UseCasesImplementation.Passenger;
 
 public class ManageBookingsService : IManageBookingsService
 {
-    private readonly CsvManageBookingsRepository _manageBookingsRepository;
+    private readonly ICsvManageBookingsRepository _manageBookingsRepository;
 
-    public ManageBookingsService(CsvManageBookingsRepository manageBookingsRepository)
+    public ManageBookingsService(ICsvManageBookingsRepository manageBookingsRepository)
     {
         _manageBookingsRepository = manageBookingsRepository;
     }

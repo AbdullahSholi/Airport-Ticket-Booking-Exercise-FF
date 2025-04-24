@@ -1,7 +1,8 @@
 using AirportTicketBookingExerciseF.Domain.Entities;
+using AirportTicketBookingExerciseF.Infrastructure.Repositories.Manager;
 using AirportTicketBookingExerciseF.Infrastructure.Utilities.Manager;
 
-public class CsvGetAllFlightsRepository
+public class CsvGetAllFlightsRepository : ICsvGetAllFlightsRepository
 {
     private readonly string _csvFilePath;
     private readonly GetAllFlightsParser _getAllFlightsParser;

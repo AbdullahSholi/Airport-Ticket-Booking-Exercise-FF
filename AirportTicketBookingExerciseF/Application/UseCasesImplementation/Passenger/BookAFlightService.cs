@@ -5,9 +5,9 @@ namespace AirportTicketBookingExerciseF.Application.UseCasesImplementation.Passe
 
 public class BookAFlightService : IBookAFlightService
 {
-    private readonly CsvBookAFlightRepository _bookAFlightRepository;
+    private readonly ICsvBookAFlightRepository _bookAFlightRepository;
 
-    public BookAFlightService(CsvBookAFlightRepository bookAFlightRepository)
+    public BookAFlightService(ICsvBookAFlightRepository bookAFlightRepository)
     {
         _bookAFlightRepository = bookAFlightRepository;
     }

@@ -1,0 +1,49 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=02176b29_002D53d5_002D4106_002Db0de_002Db971a6b76cc8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="FilterBookings_When" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.FilterBookingsServiceShould&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.GetAllFlightsServiceShould.GetAllFlights_When&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.GetAllFlightsServiceShould&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.BookAFlightServiceShould&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.ManageBookingsServiceShould.ViewPersonalBookings&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.ManageBookingsServiceShould&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1bd2f645_002Da0ca_002D4bfd_002D94dd_002Da42898255c03/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ManageBookingsServiceShould #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.ManageBookingsServiceShould&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=33a5b945_002D00c2_002D440e_002Dbfe1_002D3eda797d2119/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ManageBookingsServiceShould #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.ManageBookingsServiceShould&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=392502f4_002Dcd4a_002D4b8d_002Daf3b_002Dba8c63dcc2dc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ManageBookingsServiceShould" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.ManageBookingsServiceShould&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=53496bcc_002D2ee0_002D44f9_002Db858_002Db54a3d807c28/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ViewPersonalBookings" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.ManageBookingsServiceShould.ViewPersonalBookings&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a8f84262_002D3790_002D442a_002D9b2e_002Debdd5b75b18a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ManageBookingsServiceShould #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.ManageBookingsServiceShould&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d3ee2d84_002Dc403_002D4eee_002Dbda4_002D44f68587fc5f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ManageBookingsServiceShould #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.ManageBookingsServiceShould&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e9b160c9_002Dadd6_002D4b6b_002D9de8_002D9761530fd226/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CancelABooking" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.ManageBookingsServiceShould.CancelABooking&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.ManageBookingsServiceShould.ModifyABooking&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2B0B2E3-62D0-439D-8CC6-1331833915C6::net9.0::Airport_Ticket_Booking_Exercise_F.Tests.SearchForAvailableFlightsServiceShould.SearchForAvailableFlights&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

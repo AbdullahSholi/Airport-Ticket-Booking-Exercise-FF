@@ -1,12 +1,13 @@
 using AirportTicketBookingExerciseF.Domain.UseCasesDeclaration.Manager;
+using AirportTicketBookingExerciseF.Infrastructure.Repositories.Manager;
 
 namespace AirportTicketBookingExerciseF.Application.UseCasesImplementation.Manager;
 
 public class GetAllFlightsService : IGetAllFlightsService
 {
-    private readonly CsvGetAllFlightsRepository _getAllFlightsRepository;
+    private readonly ICsvGetAllFlightsRepository _getAllFlightsRepository;
 
-    public GetAllFlightsService(CsvGetAllFlightsRepository getAllFlightsRepository)
+    public GetAllFlightsService(ICsvGetAllFlightsRepository getAllFlightsRepository)
     {
         _getAllFlightsRepository = getAllFlightsRepository;
     }
